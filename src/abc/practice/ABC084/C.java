@@ -41,7 +41,11 @@ public class C {
             if (sum < s[i]) {
                 sum = s[i];
             }
-            sum += sum % f[i] + c[i];
+            int t = 0;
+            if (sum % f[i] != 0) {
+                t = f[i] - sum % f[i];
+            }
+            sum += t + c[i];
         }
         return sum;
 
