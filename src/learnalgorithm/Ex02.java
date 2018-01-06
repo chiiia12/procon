@@ -20,18 +20,18 @@ public class Ex02 {
      * v:int最大22億 32bit
      * vs:最大1億
      */
-    private static boolean contains(int v, int[] vs, int start, int last) {
-        int mid = start + (last - start) / 2;
-        if (last - start == 1 && vs[last] != v && vs[start] != v) {
+    private static boolean contains(int v, int[] vs, int left, int right) {
+        int mid = left + (right - left) / 2;//真ん中を取ろうとしてleft+right/2とするとintがあふれる可能性
+        if (right - left == 1 && vs[right] != v && vs[left] != v) {
             return false;
         }
         if (v == vs[mid]) {
             return true;
         }
         if (vs[mid] > v) {
-            return contains(v, vs, start, mid);
+            return contains(v, vs, left, mid);
         } else {
-            return contains(v, vs, mid, last);
+            return contains(v, vs, mid, right);
         }
     }
 }
