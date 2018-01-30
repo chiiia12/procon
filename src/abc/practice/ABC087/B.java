@@ -18,38 +18,17 @@ public class B {
         System.out.println(solve());
     }
 
-    /**
-     * 1000
-     * 500*2 0
-     * 500 100*2
-     * 0 100*10
-     */
-
-    /**
-     * 1200
-     * 500*2 100*2
-     * 500*1 100*7
-     * 500*0 100*12
-     */
     private static int solve() {
         int count = 0;
-        int i = (x / 500) > a ? a : (x / 500);
-        while (i >= 0) {
-            int tmpa = i == 0 ? x : x % (i * 500);
-            int j = (tmpa / 100) > b ? b : (tmpa / 100);
-            while (j >= 0) {
-                int tmpb = j == 0 ? tmpa : tmpa % (j * 100);
-                int tmpc = tmpb % (50);
-                if (tmpc == 0) {
-                    if (tmpb > 0 && tmpc / 50 > 0) {
-                        //nothing
-                    } else {
+        for (int i = 0; i <= a; i++) {
+            for (int j = 0; j <= b; j++) {
+                for (int k = 0; k <= c; k++) {
+                    int sum = i * 500 + j * 100 + k * 50;
+                    if (sum == x) {
                         count++;
                     }
                 }
-                j--;
             }
-            i--;
         }
         return count;
     }
