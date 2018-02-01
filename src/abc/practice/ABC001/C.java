@@ -27,12 +27,15 @@ public class C {
         int dir = sc.nextInt();
         int w = sc.nextInt();
 
-        int dirans = dir % 365;
+        float dirans = (float) dir / 10;
         findDir(dirans);
     }
 
-    private static String findDir(int dirans) {
-        float a = (float) dirans / (365 / 16);
+    private static String findDir(float dirans) {
+        float x = (float) 365 / 16;
+        int a = (int) Math.floor((dirans + (x / 2)) / x);
+        System.out.println(Math.floor((dirans + (x / 2)) / x));
+        System.out.println((dirans + (x / 2) / x));
         System.out.println(array[Math.round(a)]);
         return array[Math.round(a)];
     }
