@@ -24,7 +24,7 @@ public class C {
             "NNW"
     };
     static final double[] rangeArray = {
-            0,
+            11.25,
             33.75,
             56.25,
             78.75,
@@ -35,6 +35,7 @@ public class C {
             191.25,
             213.75,
             236.25,
+            258.75,
             281.25,
             303.75,
             326.25,
@@ -79,12 +80,11 @@ public class C {
     }
 
     private static String findDir(float dirans) {
-        float x = (float) 365 / 16;
-        int a = (int) Math.floor((dirans + (x / 2) / x));
-        System.out.println(Math.floor((dirans + (x / 2))));
-        System.out.println(Math.floor((dirans + (x / 2)) / x));
-        System.out.println((dirans + (x / 2) / x));
-        System.out.println(array[Math.round(a)]);
-        return array[Math.round(a)];
+        for (int i = 0; i < rangeArray.length; i++) {
+            if (dirans < rangeArray[i]) {
+                return array[i];
+            }
+        }
+        return array[0];
     }
 }
