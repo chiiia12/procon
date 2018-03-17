@@ -19,7 +19,6 @@ public class D {
   private static int solve(int n, int k) {
     int answer = 0;
     //modが2のものを探す
-    for()
     return answer;
   }
 }
