@@ -9,38 +9,23 @@ public class C {
 
     public static void main(String[] args) {
         long a = sc.nextLong();
-        int count = 0;
-        while (a >= 36) {
-            long beforeNine = 0;
-            long beforeSix = 0;
-            long nine = 9;
-            while (a > 0 && nine <= a) {
-                beforeNine = nine;
-                nine = nine * 9;
+        int res = (int) a;
+        for (int i = 0; i <= a; i++) {
+            int cc = 0;
+            int t = i;
+            while (t > 0) {
+                cc += t % 6;
+                t = t / 6;
             }
-            long six = 6;
-            while (a > 0 && six <= a) {
-                beforeSix = six;
-                six = six * 6;
+            t = (int) a - i;
+            while (t > 0) {
+                cc += t % 9;
+                t = t / 9;
             }
-            if (beforeSix == a || beforeNine == a) {
-                count++;
-                System.out.println(count);
+            if (res > cc) {
+                res = cc;
             }
-            a = a - Math.max(beforeSix, beforeNine);
-            count++;
         }
-        count = Math.min(search(a, 6, count), search(a, 9, count));
-        System.out.println(count);
-    }
-
-    private static int search(long a, int num, int count) {
-        if (a < num) {
-            return count + (int) a;
-        }
-        a -= num;
-        count++;
-        return Math.min(search(a, 6, count), search(a, 9, count));
-
+        System.out.println(res);
     }
 }
