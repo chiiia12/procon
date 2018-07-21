@@ -49,6 +49,9 @@ public class D {
                 list.add(c[i]);
             }
             c[index] = 0;
+            if (max == aList.size()) {
+                break;
+            }
             //済んだやつは消してく
             List<Integer> aList2 = new ArrayList<>();
             List<Integer> bList2 = new ArrayList<>();
