@@ -8,23 +8,14 @@ public class C {
 
 
     public static void main(String[] args) {
-        long gosencho = (long) (Math.pow(10, 12) * 5);
-
         String s = sc.next();
         long k = sc.nextLong();
-        int index = Integer.parseInt(String.valueOf(s.charAt(0)));
-
-        if (index == 1 && k == 1) {
-            System.out.println(1);
-            return;
+        for (int i = 0; i < k; i++) {
+            if (s.charAt(i) != '1') {
+                System.out.println(s.charAt(i));
+                return;
+            }
         }
-
-        if (index == 1 && k > 1 && k < Math.pow(10, 12)) {
-            System.out.println(s.charAt(1));
-            return;
-        }
-        int i = (int) (k / Math.pow(10, 12));
-        System.out.println(s.charAt(i));
-
+        System.out.println(1);
     }
 }
