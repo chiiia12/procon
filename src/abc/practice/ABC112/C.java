@@ -28,10 +28,9 @@ public class C {
         long minH = 0;
         int ansX = 0;
         int ansY = 0;
-        for (int xi = 0; xi <= 10; xi++) {
-            for (int yi = 0; yi <= 10; yi++) {
+        for (int xi = 0; xi <= 100; xi++) {
+            for (int yi = 0; yi <= 100; yi++) {
                 long ans = sameHeight(xi, yi);
-//                System.out.println("xi: " + xi + " yi: " + yi + " h: " + ans + " minH:" + minH);
                 if (ans < 1) {
                     continue;
                 }
@@ -49,18 +48,23 @@ public class C {
     public static long sameHeight(int xi, int yi) {
         long height = -1;
         for (int j = 0; j < n; j++) {
-            long ans = Math.abs(x[j] - xi) + Math.abs(y[j] - yi) + h[j];
-            if (ans < 0) {
-                ans = 0;
+            if (h[j] > 0) {
+                long ans = Math.abs(xi - x[j]) + Math.abs(yi - y[j]) + h[j];
+                if (height < 0) {
+                    height = ans;
+                    continue;
+                }
+                if (height != ans) {
+                    return -1;
+                }
             }
-            if (height < 0) {
-                height = ans;
-                continue;
-            }
-            if (height == ans) {
-                continue;
-            } else {
-                return -1;
+        }
+        for (int j = 0; j < n; j++) {
+            if (h[j] == 0) {
+                long dist = Math.abs(xi - x[j]) + Math.abs(yi - y[j]);
+                if (height > dist) {
+                    return -1;
+                }
             }
         }
         return height;
