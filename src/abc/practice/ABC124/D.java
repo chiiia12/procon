@@ -14,11 +14,11 @@ public class D {
         int k = sc.nextInt();
         String s = sc.next();
         List<Integer> list = new ArrayList<>();
-        if (s.charAt(0) == '0') {
-
+        if (s.charAt(0) == '1') {
+            list.add(0);
         }
         int cnt = 0;
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < n; i++) {
             if (i == 0 || s.charAt(i) == s.charAt(i - 1)) {
                 cnt++;
             } else {
@@ -26,6 +26,7 @@ public class D {
                 cnt = 1;
             }
         }
+        list.add(cnt);
         int ans = 0;
         for (int i = 0; i < list.size(); i++) {
             int left = i;
