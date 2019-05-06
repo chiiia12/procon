@@ -31,16 +31,21 @@ public class D {
             list.add(0);
         }
         int ans = 0;
+        int num = 0;
+        int left = 0;
+        int right = 0;
         for (int i = 0; i < list.size(); i += 2) {
-            int left = i;
-            int right = Math.min(i + k * 2 + 1, list.size());
-            int num = 0;
-            for (int j = left; j < right; j++) {
-                num += list.get(j);
+            int nextLeft = i;
+            int nextRight = Math.min(i + k * 2 + 1, list.size());
+            while (nextLeft > left) {
+                num -= list.get(left);
+                left++;
             }
-            if (ans < num) {
-                ans = num;
+            while (nextRight > right) {
+                num += list.get(right);
+                right++;
             }
+            ans = Math.max(ans, num);
         }
 
         System.out.println(ans);
