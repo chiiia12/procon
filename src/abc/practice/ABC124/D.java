@@ -31,20 +31,14 @@ public class D {
             list.add(0);
         }
         int ans = 0;
-        int num = 0;
-        int left = 0;
-        int right = 0;
+        int[] sum = new int[list.size() + 1];
+        for (int i = 0; i < list.size(); i++) {
+            sum[i + 1] = sum[i] + list.get(i);
+        }
         for (int i = 0; i < list.size(); i += 2) {
-            int nextLeft = i;
-            int nextRight = Math.min(i + k * 2 + 1, list.size());
-            while (nextLeft > left) {
-                num -= list.get(left);
-                left++;
-            }
-            while (nextRight > right) {
-                num += list.get(right);
-                right++;
-            }
+            int left = i;
+            int right = Math.min(i + k * 2 + 1, list.size());
+            int num = sum[right] - sum[left];
             ans = Math.max(ans, num);
         }
 
