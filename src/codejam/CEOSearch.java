@@ -32,19 +32,23 @@ public class CEOSearch {
         int level = 0;
         for (int i = 0; i < list.size(); i++) {
             if (i == list.size() - 1) {
-                sum = list.get(i).num;
+                sum += list.get(i).num;
                 level = list.get(i).level;
                 break;
             }
             Employee one = list.get(i);
             Employee two = list.get(i + 1);
-            if (two.level - one.num < 0) {
-                sum += two.level - one.num;
+            int num = (two.level * two.num) - one.num;
+            if (num < 0) {
+                sum += Math.abs(num);
                 level = one.level;
             } else {
                 if (sum > 0) {
-                    if (two.level - one.num - sum >= 0) {
+                    if (num - sum >= 0) {
                         level = 0;
+                        sum = 0;
+                    } else {
+                        sum = sum - num;
                     }
                 }
             }
