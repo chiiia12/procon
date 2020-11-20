@@ -1,6 +1,6 @@
 package abc.practice.ABC179;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class D {
 
@@ -10,28 +10,28 @@ public class D {
     public static void main(String[] args) {
         int n = sc.nextInt();
         int k = sc.nextInt();
-        Set<Integer> set = new HashSet();
+        int[] l = new int[k];
+        int[] r = new int[k];
+        long mod = 998244353L;
         for (int i = 0; i < k; i++) {
-            int start = sc.nextInt();
-            int end = sc.nextInt();
-            for (int j = start; j <= end; j++) {
-                set.add(j);
-            }
+            l[i] = sc.nextInt();
+            r[i] = sc.nextInt();
         }
-        int[] dp = new int[n];
-        Deque<Integer> stack = new ArrayDeque();
-        stack.push(n);
-        while (!stack.isEmpty()) {
-            int num = stack.pop();
-            Iterator<Integer> iterator = set.iterator();
-            while (iterator.hasNext()) {
-                int next = iterator.next();
-                if (num - next >= 1) {
-                    dp[num - next] = (dp[num - next] + 1) % 998244353;
-                    stack.push(num - next);
-                }
+        long[] dp = new long[n + 1];
+        long[] dpsum = new long[n + 1];
+        dp[1] = 1;
+        dpsum[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            for (int j = 0; j < k; j++) {
+                int li = i - r[j];
+                int ri = i - l[j];
+                if (ri < 0) continue;
+                li = Math.max(1, li);
+                dp[i] = (dp[i] % mod + dpsum[ri] % mod - dpsum[li - 1] % mod);
+                dp[i] = (dp[i] + mod) % mod;
             }
+            dpsum[i] = (dpsum[i - 1] % mod + dp[i] % mod) % mod;
         }
-        System.out.println(dp[1]);
+        System.out.println(dp[n]);
     }
 }
